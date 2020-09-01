@@ -1,20 +1,26 @@
 class Paper{
-    constructor(x,y,width,height){
+    constructor(x,y,r){
         var options={       
             isStatic:true,     
             restitution:0.3,
             friction:0.5,
             density:1.2          
-        }
-        this.body=Bodies.circle(x,y,width,options);        
-        this.width=width;
-        this.height=20;
+        }        
+        this.x=x;
+        this.y=y;
+        this.r=r;
+        this.body=Bodies.circle(x,y,this.r/2,options);        
         World.add(world,this.body);
     }
     display(){
-        var pos=this.body.position;        
-        fill("pink");
-        ellipseMode(RADIUS);        
-        ellipse(pos.x, pos.y,20,20);        
+        var paperpos=this.body.position;
+			push()
+			translate(paperpos.x, paperpos.y);
+			ellipse(RADIUS)
+			strokeWeight(3);
+			fill(255,0,255)
+			ellipse(0,0,this.r, this.r);
+			pop()
+			    
     }
 };
